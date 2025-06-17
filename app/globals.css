@@ -1,26 +1,36 @@
-@import "tailwindcss";
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Adicionado para rolagem suave ao clicar em links âncora */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Suas animações CSS personalizadas */
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(1.05); opacity: 0.2; }
+}
+@keyframes pulse-light {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.3; }
+}
+@keyframes fade-in-slow {
+  from { opacity: 0; }
+  to { opacity: 0.1; }
+}
+
+/* Variáveis CSS para o neon glow (globais) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --neon-rgb-blue-500: 59, 130, 246;
+  --neon-rgb-green-500: 34, 197, 94;
+  --neon-rgb-purple-500: 168, 85, 247;
+  --neon-rgb-cyan-500: 6, 182, 212;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Transição de cores de fundo do body para o modo claro/escuro */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease-in-out;
 }
