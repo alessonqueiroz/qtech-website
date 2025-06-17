@@ -9,19 +9,15 @@ import './globals.css'; // Importe seu CSS global
 
 // Importe os componentes de ícone e background
 import { IconMenu, IconClose, IconArrowUp } from '../components/Icons';
-import { BinaryCodeBackground } from '../components/BinaryCodeBackground';
 import { NeuralNetworkSVG } from '../components/NeuralNetworkSVG';
 
 const inter = Inter({ subsets: ['latin'] });
-
-// REMOVIDO: export const metadata = { ... } (como na correção anterior)
-// Adicionamos as tags <title> e <meta> diretamente no <head> para layouts com 'use client'
 
 export default function RootLayout({ children }) {
   // Inicializa darkMode com false. O estado real será definido no useEffect.
   const [darkMode, setDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showScrollToTop, setShowScrollToTop] = useState(0); // Usar número para scrollProgress
+  const [showScrollToTop, setShowScrollToTop] = useState(false); // Mudado para booleano
   const [scrollProgress, setScrollProgress] = useState(0);
 
 
@@ -76,15 +72,11 @@ export default function RootLayout({ children }) {
   return (
     // Removida a classe 'dark' do <html> aqui, pois ela é adicionada/removida via JS no useEffect
     <html lang="pt-BR" className={`${inter.className}`}>
-      <head>
-        <title>QTech Soluções Tecnológicas</title>
-        <meta name="description" content="Tecnologia que transforma, soluções que impulsionam." />
-      </head>
-      {/* As classes de background e texto do body agora vêm das classes Tailwind base e 'dark:' */}
-      <body className="bg-qtech-light text-qtech-text-light dark:bg-qtech-dark dark:text-qtech-text-dark transition-colors duration-300">
+      {/* As tags <title> e <meta> agora são gerenciadas pela exportação `metadata` */}
+      <body className="transition-colors duration-300"> {/* Classes de background e texto do body agora vêm das classes Tailwind base e 'dark:' */}
         <div className="relative min-h-screen">
           {/* Backgrounds tecnológicos */}
-          <BinaryCodeBackground />
+      
           <NeuralNetworkSVG />
           {/* Overlay escuro/claro */}
           {/* Removidas classes 'light:' no overlay para evitar conflitos, a cor de fundo padrão será light e dark via classe 'dark' */}
@@ -99,7 +91,7 @@ export default function RootLayout({ children }) {
             <header className="fixed top-0 left-0 right-0 z-40 bg-black bg-opacity-30 backdrop-filter backdrop-blur-lg border-b border-gray-700 border-opacity-30 py-4 px-6 flex justify-between items-center dark:bg-black dark:bg-opacity-30 light:bg-white light:bg-opacity-30 transition-colors duration-300">
               <div className="flex items-center">
                 {/* Placeholder para Logomarca da empresa */}
-                <img src="/assets/qtech-logo.png" alt="QTech Logo" className="h-10 mr-4 rounded-md" />
+                <img src="C:\Users\aless\OneDrive\Área de Trabalho\site QTech original\qtech-website\public\assets\Logo QTech Soluções Tecnológicas.png" alt="QTech Logo" className="h-10 mr-4 rounded-md" />
               </div>
               <nav className="hidden md:flex space-x-6">
                 {['Home', 'Sobre', 'Serviços', 'Portfólio', 'Preços', 'Contato'].map((item) => (
@@ -136,7 +128,7 @@ export default function RootLayout({ children }) {
                   animate="visible"
                   exit="exit"
                   variants={menuVariants}
-                  className="fixed inset-y-0 right-0 w-64 bg-black bg-opacity-90 backdrop-filter backdrop-blur-xl z-50 p-6 md:hidden flex flex-col items-start pt-24 dark:bg-black dark:bg-opacity-90 light:bg-white light:bg-opacity-90 transition-colors duration-300"
+                  className="fixed inset-y-0 right-0 w-64 bg-black bg-opacity-90 backdrop-filter backdrop-blur-xl z-50 p-6 md:hidden flex flex-col items-start pt-24 dark:bg-black dark:bg-opacity-90 transition-colors duration-300" // Removida light:bg-white light:bg-opacity-90
                 >
                   {['Home', 'Sobre', 'Serviços', 'Portfólio', 'Preços', 'Contato'].map((item) => (
                     <a

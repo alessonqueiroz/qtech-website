@@ -15,6 +15,8 @@ module.exports = {
       colors: {
         'qtech-dark': '#0d1117',
         'qtech-light': '#f0f2f5', // Cor para o modo claro
+        'qtech-text-dark': '#e2e8f0', // Adicionado: Cor do texto para o modo escuro
+        'qtech-text-light': '#334155', // Adicionado: Cor do texto para o modo claro
         'qtech-neon-green': '#00ffcc',
         'qtech-neon-blue': '#00ccff',
       },

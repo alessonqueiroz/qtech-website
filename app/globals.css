@@ -32,5 +32,7 @@ html {
 
 /* Transição de cores de fundo do body para o modo claro/escuro */
 body {
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Adicionado transição para cor do texto também */
+  /* As cores de fundo e texto serão definidas pelas classes do Tailwind no html/body,
+     como bg-qtech-light, text-qtech-text-light, e dark:bg-qtech-dark, dark:text-qtech-text-dark */
 }

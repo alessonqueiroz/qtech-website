@@ -4,23 +4,39 @@ import { motion } from 'framer-motion';
 import { GlassCard } from './GlassCard';
 
 export const Contact = () => {
-  const [formStatus, setFormStatus] = useState(''); // 'idle', 'sending', 'sent', 'error'
+  const [formStatus, setFormStatus] = useState('idle'); // 'idle', 'sending', 'sent', 'error'
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus('sending');
     // Em um ambiente real, você integraria aqui EmailJS, Resend ou seu próprio backend
-    // Exemplo simulado de envio:
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simula delay de rede
-      // Aqui você faria a chamada fetch para EmailJS/Resend
-      // const response = await fetch('YOUR_EMAILJS_ENDPOINT', { method: 'POST', body: new FormData(e.target) });
-      // if (response.ok) {
+      // Simula delay de rede. Em produção, substitua pela sua lógica de envio real.
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Exemplo de como você faria uma chamada fetch real:
+      /*
+      const response = await fetch('/api/send-email', { // Exemplo de endpoint de API no Next.js
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: e.target.name.value,
+          email: e.target.email.value,
+          message: e.target.message.value,
+        }),
+      });
+
+      if (response.ok) {
         setFormStatus('sent');
         e.target.reset(); // Limpa o formulário
-      // } else {
-      //   throw new Error('Erro ao enviar mensagem.');
-      // }
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Erro ao enviar mensagem.');
+      }
+      */
+      setFormStatus('sent'); // Apenas para simulação
+      e.target.reset(); // Limpa o formulário após a simulação
     } catch (error) {
       console.error("Erro no envio do formulário:", error);
       setFormStatus('error');

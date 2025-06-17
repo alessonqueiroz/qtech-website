@@ -1,8 +1,8 @@
 // app/page.js
 'use client'; // Necessário para usar hooks e interatividade no Next.js App Router
 
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion'; // Importe motion, AnimatePresence é para o layout
+import React from 'react'; // Removido useState e useEffect, pois a navegação é gerenciada no layout
+import { motion } from 'framer-motion';
 
 // Importe seus componentes de seção e UI
 import { Home } from '../components/Home';
@@ -12,32 +12,10 @@ import { Contact } from '../components/Contact';
 import { GlassCard } from '../components/GlassCard';
 
 export default function Page() {
-  const [currentPage, setCurrentPage] = useState('home');
-
-  // Este useEffect para IntersectionObserver é para destacar o item do menu de navegação
-  // baseado na seção visível na tela.
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setCurrentPage(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5, rootMargin: '-50% 0px -50% 0px' } // Ajuda a detectar quando a seção está no centro
-    );
-
-    document.querySelectorAll('section[id]').forEach((section) => {
-      observer.observe(section);
-    });
-
-    return () => {
-      document.querySelectorAll('section[id]').forEach((section) => {
-        observer.unobserve(section);
-      });
-    };
-  }, []);
+  // Removido: const [currentPage, setCurrentPage] = useState('home');
+  // Removido: Este useEffect para IntersectionObserver, pois a lógica de destaque de navegação
+  // e o monitoramento de seções visíveis serão centralizados no layout.js,
+  // ou diretamente no CSS/JavaScript de navegação se preferir um método mais leve.
 
   return (
     <>
